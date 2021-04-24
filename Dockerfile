@@ -1,26 +1,25 @@
-# Tomamos como base la imagen de ubuntu
+# Tomamos como base la imagen de ubuntu y además instalamos miniconda
 FROM ubuntu
-
 FROM continuumio/miniconda3
 
+# Autor
 LABEL Pedro Hernandez <pedro.a.hdez.a@gmail.com>
 
-# Creamos un directorio y lo asignamos como workdir
+# Creamos un directorio y lo convertimos en nuestro directorio de trabajo
 RUN mkdir data_cleaning
-
 WORKDIR /data_cleaning
 
 # Actualizamos todos los paquetes e instalamos los que faltan
 RUN apt -y update
-RUN apt install -y curl unzip csvkit 
+RUN apt install -y curl unzip csvkit
 
 # Descargamos los datos
 RUN curl -O http://datosabiertos.salud.gob.mx/gobmx/salud/datos_abiertos/datos_abiertos_covid19.zip
 
-# Descomprimimos el archivo y eliminamos el zip
+# Descomprimimos el archivo y eliminamos el zip 
 RUN unzip datos_abiertos_covid19.zip && rm datos_abiertos_covid19.zip
 
-# Obtenemos la suma de los negativos y confirmados de covid para cada municipio de Sonora y 
+# Obtenemos la suma de los negativos y confirmados de covid para cada municipio de Sonora y
 # guardamos el resultado en el archivo "numero_positivos_y_negativos_municipios_sonora.csv"
 RUN csvcut -c ENTIDAD_RES,MUNICIPIO_RES,CLASIFICACION_FINAL 210422COVID19MEXICO.csv | \
     csvgrep -c ENTIDAD_RES -m "26" | csvcut -c MUNICIPIO_RES,CLASIFICACION_FINAL | \
