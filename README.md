@@ -2,7 +2,7 @@
 Mini proyecto de ciencia de datos utilizando Docker.
 
 # Objetivo
-Obtener los casos positivos y negativos de Covid-19 para cada municipio del estado de Sonora a partir de la [base de datos federal de México](https://www.gob.mx/salud/documentos/datos-abiertos-152127) utilizando la línea de comandos de Unix y estableciendo el entorno de trabajo en una imagen de Docker para futuros análisis sobre los datos obtenidos.
+Obtener la sumatoria de casos positivos y negativos de Covid-19 para cada municipio del estado de Sonora a partir de la [base de datos federal de México](https://www.gob.mx/salud/documentos/datos-abiertos-152127) utilizando la línea de comandos de Unix y estableciendo el entorno de trabajo en una imagen de Docker para futuros análisis sobre los datos obtenidos.
 
 # Uso
 
@@ -26,6 +26,10 @@ Para crear un contenedor persistente con la imagen que acabamos de crear ejecuta
 ```console
 $ docker run -it --name <nombre_contenedor> <nombre_imagen>
 ```
+Recuerda reemplazar la cadena &lt; nombre_contenedor &gt; por el nombre que deseas asignar al contenedor que se va a construir.
+
+El nombre de la imagen &lt; nombre_imagen &gt; debe coincidir con el nombre que escribiste al momento de generar la imagen.
+
 ### Consultar los resultados
 Si enlistamos los archivos contenidos en el directorio de trabajo del contenedor de Docker obtendremos lo siguiente:
 
@@ -50,11 +54,5 @@ TOTAL,MUNICIPIO_RES,CLASIFICACION_FINAL
 82,ALTAR,NEGATIVO A SARS-COV-2
 21,ARIVECHI,CASO DE SARS-COV-2  CONFIRMADO
 ```
-Recuerda reemplazar la cadena &lt; nombre_contenedor &gt; por el nombre que deseas asignar al contenedor que se va a construir.
-
-El nombre de la imagen &lt; nombre_imagen &gt; debe coincidir con el nombre que escribiste al momento de generar la imagen.
-
-
-
 
 Puedes obtener una explicación más detallada en [esta entrada de mi blog](https://pedro-hdez.github.io/docker-y-ciencia-de-datos/).
